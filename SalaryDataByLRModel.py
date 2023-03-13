@@ -1,13 +1,17 @@
 #!/usr/bin/env python
 # coding: utf-8
 
+# # Expected Salary for fresher based on company employers salary
+
+# ![LRM.jpg](attachment:LRM.jpg)
+
 # # The scenario is you are a HR officer, you got a candidate with 5 years of experience.
 # Then what is the best salary you should offer to him?”
 
 # # # Importing Packages/Libraries
 # 
 
-# In[1]:
+# In[2]:
 
 
 import numpy as np
@@ -18,42 +22,42 @@ from sklearn.linear_model import LinearRegression
 
 # # Getting Details of Data set
 
-# In[2]:
+# In[4]:
 
 
 # Importing the dataset
 google_kcdhanunjayInfosys = pd.read_csv("C:/Users/KCDHANUNJAY INFOSYS/AppData/Local/Programs/Python/Python312/salary_data.csv")
 
 
-# In[3]:
+# In[5]:
 
 
 # displaying salary_data
 print(google_kcdhanunjayInfosys)
 
 
-# In[4]:
+# In[6]:
 
 
 #getting Datatypes of Columns
 google_kcdhanunjayInfosys.dtypes
 
 
-# In[5]:
+# In[7]:
 
 
 #getting size of Dataframes(rows x Columns)
 print(google_kcdhanunjayInfosys.size)
 
 
-# In[6]:
+# In[8]:
 
 
 #getting the number of rows and columns in the dataframe
 google_kcdhanunjayInfosys.shape
 
 
-# In[7]:
+# In[9]:
 
 
 #getting the dimentions of the dataframe
@@ -115,10 +119,46 @@ google_kcdhanunjayInfosys.tail(10)
 google_kcdhanunjayInfosys.tail(np.size(google_kcdhanunjayInfosys))
 
 
+# In[10]:
+
+
+print(google_kcdhanunjayInfosys.isna())
+
+
+# In[18]:
+
+
+print(google_kcdhanunjayInfosys.isna().astype(int))
+
+
+# In[13]:
+
+
+google_kcdhanunjayInfosys['YearsExperience']
+
+
+# In[21]:
+
+
+google_kcdhanunjayInfosys['YearsExperience'].astype(int)
+
+
+# In[16]:
+
+
+google_kcdhanunjayInfosys['YearsExperience'].isna().astype(int)
+
+
+# In[12]:
+
+
+google_kcdhanunjayInfosys['Salary']
+
+
 # # # Linear Regression Initialization
 # 
 
-# In[16]:
+# In[29]:
 
 
 #get a copy of dataset exclude last column
@@ -126,20 +166,20 @@ google_kcdhanunjayInfosys.tail(np.size(google_kcdhanunjayInfosys))
 X = google_kcdhanunjayInfosys.iloc[:, :-1].values 
 
 
-# In[17]:
+# In[30]:
 
 
 X
 
 
-# In[18]:
+# In[31]:
 
 
 #get array of dataset in column 1st
 y = google_kcdhanunjayInfosys.iloc[:, 1].values 
 
 
-# In[19]:
+# In[32]:
 
 
 y
@@ -147,7 +187,7 @@ y
 
 # # # Spilting data
 
-# In[20]:
+# In[35]:
 
 
 # Splitting the dataset into the Training set and Test set
@@ -160,7 +200,7 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=1/3, random_
 # # Predicting the result of 5 Years Experience
 # 
 
-# In[21]:
+# In[36]:
 
 
 # Fitting Simple Linear Regression to the Training set
@@ -169,30 +209,26 @@ regressor = LinearRegression()
 regressor.fit(X_train, y_train)
 
 
-# In[22]:
+# In[37]:
 
 
 # Predicting the result of 5 Years Experience
 from sklearn.linear_model import LinearRegression
-hgt = google_kcdhanunjayInfosys.YearsExperience.values.reshape(-1,1)
-wgt = google_kcdhanunjayInfosys.Salary.values.reshape(-1,1)
 y_pred = regressor.predict(X_test)
 y_pred
 
 
-# In[23]:
+# In[38]:
 
 
 # Predicting the result of 5 Years Experience
-hgt = google_kcdhanunjayInfosys.YearsExperience.values.reshape(-1,1)
-wgt = google_kcdhanunjayInfosys.Salary.values.reshape(-1,1)
 y_pred = regressor.predict([[5]])
 y_pred
 
 
 # # #  intercept and slope of a simple linear regression model in Python using scikit-learn
 
-# In[24]:
+# In[21]:
 
 
 # print the intercept and slope
@@ -201,7 +237,7 @@ print("Intercept:",regressor.intercept_)
 print("Slope:",regressor.coef_)
 
 
-# In[25]:
+# In[39]:
 
 
 print(regressor.get_params())
@@ -210,7 +246,7 @@ print(regressor.get_params())
 # # # Visualizing the Training set results
 # 
 
-# In[26]:
+# In[40]:
 
 
 # Visualizing the Training set results
@@ -222,9 +258,11 @@ viz_train.xlabel('Year of Experience')
 viz_train.ylabel('Salary')
 viz_train.show()
 
-# In[27]:
 
 # # Visualizing the Test set results
+
+# In[42]:
+
 
 # Visualizing the Test set results
 viz_test = plt
@@ -234,3 +272,10 @@ viz_test.title('Salary VS Experience (Test set)')
 viz_test.xlabel('Year of Experience')
 viz_test.ylabel('Salary')
 viz_test.show()
+
+
+# In[ ]:
+
+
+
+
