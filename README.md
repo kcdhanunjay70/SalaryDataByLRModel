@@ -1,2 +1,2 @@
 # SalaryDataByLRModel
-Salary to specific experience problem solution aalysis
+Salary to specific experience problem solution analysis
